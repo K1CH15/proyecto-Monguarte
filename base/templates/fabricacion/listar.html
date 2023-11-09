@@ -1,0 +1,93 @@
+{% extends 'partials/body.html' %}
+{% load static %}
+{% block contenido %}
+    <!-- Content Header (Page header) -->
+    <div class="d-flex justify-content-end" style="height: 1px;">
+        <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="{% url 'index' %}">Inicio</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'inventario' %}">Inventario</a></li>
+            <li class="breadcrumb-item active">{{ titulo }} </li>
+        </ol>
+    </div>
+    <!-- /.content-header -->
+    <div class="wrapper">
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title"> {{ titulo }} </h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table id="example1" class="table table-bordered table-striped">
+                                        <thead>
+                                        <tr>
+
+                                            <th>Fecha</th>
+                                            <th>Cantidad Producto</th>
+                                            <th>Producto</th>
+                                            <th>Costo Fabricacion</th>
+
+                                            <th>Acción</th>
+
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for fabricacion in fabricacion %}
+
+                                                <tr>
+                                                    <td>{{ fabricacion.fecha }}</td>
+                                                    <td>{{ fabricacion.cantidad_producto }}</td>
+                                                    <td>{{ fabricacion.producto }}</td>
+                                                    <td>{{ fabricacion.costo_fabricacion }}</td>
+
+                                                    <td>
+                                                        <button type="button" data-ids="{{ fabricacion.id }}"
+                                                                class="btnEliminar btn btn-danger"
+                                                                data-bs-toggle="modal" data-bs-target="#modal-danger">
+                                                            Eliminar
+                                                        </button>
+                                                         {% if fabricacion.estado == '1' %}
+                                                        <a class="btn btn-primary btn-md bi bi-wrench m-1 me-1"
+                                                           href="{% url 'fabricacion_detalle' fabricacion.id %}">Modificar</a>
+                                                        {% else %}
+                                                        <a class="btn btn-success btn-md m-1 me-1 toggle-eye "
+                                                           onclick="toggleVisibility()"
+                                                           href="{% url 'verr_contenido' fabricacion.id %}">
+                                                            <i id="eye-icon" class="fas fa-eye"></i> Ver
+                                                        </a>
+                                                        {% endif %}
+                                                    </td>
+                                                </tr>
+
+                                        {% endfor %}
+                                        </tbody>
+                                        <tfoot>
+                                        <tr>
+                                            <th>Fecha</th>
+                                            <th>Cantidad Producto</th>
+                                            <th>Costo Fabricacion</th>
+                                            <th>Producto</th>
+                                            <th>Acción</th>
+                                        </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+        <a href="{% url 'fabricaciones-crear' %}" class="btn btn-success w-25">Crear {{ titulo }}</a>
+    </div>
+{% endblock contenido %}

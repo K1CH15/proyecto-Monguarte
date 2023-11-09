@@ -1,0 +1,507 @@
+
+.text {
+  text-transform: uppercase;
+}
+
+.logo {
+  width: 200px;
+}
+
+.nav-btn {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.open-btn {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+}
+
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+.nav.visible {
+  transform: translateX(0);
+}
+
+.nav-black {
+  background-color: rgb(34, 31, 31);
+  width: 60%;
+  max-width: 480px;
+  min-width: 320px;
+  transition-delay: 0.4s;
+}
+
+.nav-black.visible {
+  transition-delay: 0s;
+}
+
+.nav-red {
+  background-color: rgb(229, 9, 20);
+  width: 95%;
+  transition-delay: 0.2s;
+}
+
+.nav-red.visible {
+  transition-delay: 0.2s;
+}
+
+.nav-white {
+  background-color: #fff;
+  width: 95%;
+  padding: 40px;
+  position: relative;
+  transition-delay: 0s;
+}
+
+.nav-white.visible {
+  transition-delay: 0.4s;
+}
+
+.close-btn {
+  opacity: 0.3;
+  position: absolute;
+  top: 40px;
+  right: 30px;
+}
+
+.list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.list li {
+  margin: 20px 0;
+}
+
+.list li a {
+  color: rgb(34, 31, 31);
+  font-size: 14px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.list ul {
+  list-style-type: none;
+  padding-left: 20px;
+}
+
+@media screen and ( min-width:560px) {
+  #mi-dropdown{
+    display:block !important;
+  }
+}
+
+.prueba{
+    /* From https://css.glass */
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+
+
+/*carrusel*/
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  height: 100vh;
+}
+
+.slider-container {
+  position: relative;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+}
+
+.left-slide {
+  height: 100%;
+  width: 35%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: transform 0.5s ease-in-out;
+}
+
+.left-slide > div {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+.left-slide h1 {
+  font-size: 40px;
+  margin-bottom: 10px;
+  margin-top: -30px;
+}
+
+.right-slide {
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 35%;
+  width: 65%;
+  transition: transform 0.5s ease-in-out;
+}
+
+.right-slide > div {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  height: 100%;
+  width: 100%;
+}
+
+button {
+  background-color: #fff;
+  border: none;
+  color: #aaa;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 15px;
+}
+
+button:hover {
+  color: #222;
+}
+
+button:focus {
+  outline: none;
+}
+
+.slider-container .action-buttons button {
+  position: absolute;
+  left: 35%;
+  top: 50%;
+  z-index: 100;
+}
+
+.slider-container .action-buttons .down-button {
+  transform: translateX(-100%);
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.slider-container .action-buttons .up-button {
+  transform: translateY(-100%);
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+
+.oscuro{ 
+  background-color: #1f1f1f; 
+  color: #f1eded; 
+}
+
+/*boton desplegables */
+
+/* Estilos para el botón desplegable */
+.custom-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.custom-dropbtn {
+  background-color: transparent; /* Gris plateado */
+  color: black;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+    transition: background-color 0.3s ease; /* Transición de color */
+}
+.custom-dropbtn:hover {
+  background-color: rgba(192, 192, 192, 0.8); /* Gris plateado con opacidad reducida */
+}
+
+/* Estilos para el contenido desplegable */
+.custom-dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.custom-dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.custom-dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+/* Mostrar el contenido desplegable cuando se pasa el cursor sobre el botón */
+.custom-dropdown:hover .custom-dropdown-content {
+  display: block;
+}
+/*boton desplegables */
+
+/* footer*/
+
+
+.cuerpo
+{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    min-height: 30vh;
+}
+
+footer
+{
+
+    position: relative;
+    width: 100%;
+    background: #6C210C;
+    min-height: 50px;
+
+}
+
+footer .wave
+{
+    position: absolute;
+    top: -100px;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background: url(/static/img/wave01.png);
+    background-size: 1000px 100px;
+}
+footer .wave01
+{
+    position: absolute;
+    top: -100px;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background: url(/static/img/wave.png);
+    background-size: 1000px 100px;
+}
+footer .wave02
+{
+    position: absolute;
+    top: -100px;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background: url(/static/img/wave02.png);
+    background-size: 1000px 100px;
+}
+footer .wave03
+{
+    position: absolute;
+    top: -100px;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background: url(/static/img/wave.png);
+    background-size: 1000px 100px;
+}
+footer .wave#wave1
+{
+    animation: animateWave 4s linear infinite;
+    z-index: -500;
+    opacity: 1;
+    bottom: 0;
+}
+footer .wave02#wave2
+{
+    animation: animateWave_02 4s linear infinite;
+    z-index: -999;
+    opacity: 0.5;
+    bottom: 10px;
+}
+footer .wave#wave3
+{
+    animation: animateWave 3s linear infinite;
+    z-index: -1000;
+    opacity: 0.2;
+    bottom: 15px;
+}
+footer .wave01#wave4
+{
+    animation: animateWave_02 3s linear infinite;
+    z-index: -999;
+    opacity: 0.7;
+    bottom: 20px;
+}
+@keyframes animateWave
+{
+    0%{background-position-x: 1000px;}
+    100%{background-position-x: 0px;}
+}
+@keyframes animateWave_02
+{
+    0%{background-position-x: 0px;}
+    100%{background-position-x: 1000px;}
+}
+
+
+
+/*boton flotante de ayuda */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.conta {
+  position: fixed;
+  bottom: 20px;
+  left: 20px; /* Ajuste para colocar el botón más a la izquierda */
+}
+
+.redes a {
+  display: block;
+  text-decoration: none;
+  background: #cc2b2b;
+  color: #fff;
+  width: 55px;
+  height: 55px;
+  line-height: 55px;
+  text-align: center;
+  border-radius: 50%;
+  box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.4);
+  transition: all 500ms ease;
+}
+
+.redes a:hover {
+  background: #fff;
+  color: #cc2b2b;
+}
+
+/* Estilos personalizados para el menú desplegable */
+/* Estilos personalizados para el menú desplegable */
+/* Estilos personalizados para el menú desplegable */
+.custom-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.custom-dropbtn {
+  background-color: transparent;
+  color: #ffffff;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+.custom-dropbtn1 {
+  background-color: transparent;
+  color: #603737;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+
+.custom-dropbtn:hover {
+  color: #f36f21;
+}
+
+.custom-dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 10px;
+  min-width: 150px;
+  z-index: 1;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.custom-dropdown-content a {
+  display: block;
+
+  padding: 10px 16px;
+  text-decoration: none;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+.custom-dropdown-content a:hover {
+  background-color: #f2f2f2;
+  color: #444;
+}
+
+.logout-button {
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.logout-button a {
+  color: #000000;
+  background-color: transparent;
+  border: 2px solid #e71d36;
+  padding: 8px 16px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: background-color 0.2s;
+}
+
+.logout-button a:hover {
+  background-color: #e71d36;
+}
+.boton-crear-posicion{
+    margin-left:935px;
+    margin-bottom: 5px;
+}
+body {
+  background-color: #fcf9fa; /* Cambia #f0f0f0 por el color que desees */
+}
+
+/*Estilos para button de usuario/cerrar session*/
+.dropdown-menu {
+  background-color: #a52a2a;
+}
+
+.dropdown-item {
+  color: #fff;
+}
+
+.dropdown-item:hover {
+  background-color: #a52a2a;
+}
+.select2-container--default .select2-selection--single {
+  height: 40px; /* Ajusta la altura según tus necesidades */
+}
+

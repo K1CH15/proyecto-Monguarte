@@ -1,0 +1,16 @@
+[
+{
+    "model": "productos.producto",
+    "pk": 1,
+    "fields": {
+        "deleted": null,
+        "deleted_by_cascade": false,
+        "nombre": "sdasd",
+        "precio_unitario": "12",
+        "stock": 0,
+        "estado": "1",
+        "tamano": "1",
+        "tipo": "1"
+    }
+}
+]

@@ -1,0 +1,106 @@
+{% extends 'partials/body.html' %}
+{% load static %}
+
+{% block contenido %}
+    <!-- Content Header (Page header) -->
+    <div class="d-flex justify-content-end" style="height: 1px;">
+        <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="{% url 'index' %}">Inicio</a></li>
+            <li class="breadcrumb-item active"><a href="{% url 'usuario' %}">usuarios</a></li>
+            <li class="breadcrumb-item active">{{ titulo }} </li>
+        </ol>
+    </div>
+    <!-- /.content-header -->
+    <div class="wrapper">
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title"> {{ titulo }} </h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table id="example1" class="table table-bordered table-striped">
+                                        <thead>
+                                        <tr>
+
+
+                                            <th class="notexport" >°N de Registro</th>
+
+                                            <th>Tipo de Documento</th>
+                                            <th>Número de Documento</th>
+                                            <th>Nombres</th>
+                                            <th>Apellidos</th>
+                                            <th >Teléfono</th>
+                                            <th >Rol</th>
+                                            <th >Correo Electrónico</th>
+                                            <th class="notexport">Estado</th>
+                                            <th class="notexport">Acción</th>
+
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for persona in personas %}
+                                            {% if persona.estado != "0" %}
+                                                <tr>
+                                                    <td>{{ persona.id }}</td>
+                                                    <td>{{ persona.get_tipo_documento_display }}</td>
+                                                    <td>{{ persona.numero_documento }}</td>
+                                                    <td>{{ persona.nombres }} </td>
+                                                    <td>{{ persona.apellidos }} </td>
+                                                    <td>{{ persona.telefono }}</td>
+                                                    <td>{{ persona.rol }}</td>
+                                                    <td>{{ persona.correo_electronico }}</td>
+                                                    <td>{{ persona.get_estado_display }}</td>
+                                                    <td>
+                                                        <button title="Eliminar Registro" type="button"
+                                                                data-ids="{{ persona.id }}"
+                                                                class="btnEliminar btn btn-danger bi bi-trash"
+                                                                data-bs-toggle="modal" data-bs-target="#modal-danger">
+                                                        </button>
+                                                        <a title="Modificar Registro"
+                                                           class="btn btn-primary btn-md bi bi-pencil-square"
+                                                           href="{% url 'personas-modificar' persona.id %}"></a>
+                                                    </td>
+                                                </tr>
+                                            {% endif %}
+                                        {% endfor %}
+                                        </tbody>
+                                        <tfoot>
+                                        <tr>
+                                            <th>N° de Registro</th>
+                                            <th>Tipo de Documento</th>
+                                            <th>Número de Documento</th>
+                                            <th>Nombres</th>
+                                            <th>Apellidos</th>
+                                            <th>Teléfono</th>
+                                            <th>Rol</th>
+                                            <th>Correo Electrónico</th>
+                                            <th>Estado</th>
+                                            <th>Acción</th>
+
+                                        </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <a href="{% url 'personas-crear' %}" class="boton-crear-posicion btn btn-success w-25 bi bi-person-fill-add">
+                                Crear {{ titulo }}</a>
+                            <!-- /.card -->
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+
+    </div>
+
+{% endblock contenido %}

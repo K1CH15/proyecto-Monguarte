@@ -1,0 +1,84 @@
+{% extends 'partials/body.html' %}
+{% load static %}
+{% block contenido %}
+    <!-- Content Header (Page header) -->
+    <div class="d-flex justify-content-end" style="height: 1px;">
+        <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="{% url 'index' %}">Inicio</a></li>
+            <li class="breadcrumb-item active"><a href="{% url 'ventas' %}">compras</a></li>
+            <li class="breadcrumb-item active">{{ titulo }} </li>
+        </ol>
+    </div>
+    <!-- /.content-header -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row px-1 px-sm-3" style="min-width: 270px;">
+                <div class="col px-1 px-sm-3">
+                    <div class="px-1 px-sm-3">
+                        <div class="fs-1 fw-bold">
+                            <h3 class="py-5">{{ titulo }}</h3>
+                        </div>
+
+                        <div class="d-flex">
+                            <div class="p-5 mx-3 "
+                                 style=" background-color: #fcf9f5; border-color: #68411d; border-width: 3px; border-style: solid;">
+                                <b>Codigo de Compra</b> <br>
+                                <p>{{ fabricacion.id }}</p>
+                                <b>Fecha</b> <br>
+                                <p>{{ fabricacion.fecha }}</p>
+                                <b>Producto</b><br>
+                                <p>{{ fabricacion.producto }}</p>
+                                <b>Cantidad Producto</b><br>
+                                <p>{{ fabricacion.cantidad_producto}}</p>
+
+                                <a href="{% url 'fabricaciones' %}" class="btn btn-danger">Regresar</a>
+                            </div>
+
+                            <div class="table-responsive p-3 "
+                                 style=" background-color: #fcf9f5; border-color: #68411d; border-width: 3px; border-style: solid;">
+                                <table id="example1" class="table table-bordered table-striped py-5">
+                                    <thead style="background-color: #fcf9f5">
+                                    <tr style="background-color: #d4c6b5;text-align: center;">
+                                        <th>Materia Prima</th>
+                                        <th>Cantidad Materia Prima</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for fabricacion_detalle in fabricacion_detalles %}
+                                        {% if detalle_venta.estado != "0" %}
+                                            <tr style="background-color: #f3eee9">
+                                                <td style="color: #68411d;text-align: center;">{{ fabricacion_detalle.materia_prima.nombre }}</td>
+                                                <td style="color: #68411d; text-align: center;">
+                                                    {{ fabricacion_detalle.cantidad_materia }}
+                                                </td>
+
+                                            </tr>
+                                        {% endif %}
+                                    {% endfor %}
+
+                                    </tbody>
+
+                                </table>
+                            </div>
+
+                        </div>
+                        <!-- /.card-body -->
+
+                    </div>
+                    <!-- /.card -->
+
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+
+
+    </section>
+    <!-- /.content -->
+    </div>
+{% block extrajs %}
+    {{ form.media }}
+{% endblock extrajs %}
+{% endblock contenido %}

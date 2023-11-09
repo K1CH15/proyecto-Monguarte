@@ -1,0 +1,79 @@
+{% extends 'partials/body.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block contenido %}
+        <!-- Content Header (Page header) -->
+    <div class="d-flex justify-content-end" style="height: 1px;">
+            <ol class="breadcrumb float-sm-right" >
+                <li class="breadcrumb-item" ><a href="{% url 'index' %}">Inicio</a></li>
+                <li class="breadcrumb-item" ><a href="{% url 'inventario' %}">inventario</a></li>
+                <li class="breadcrumb-item active"><a href="{% url 'materias-primas' %}">materia prima</a> </li>
+                <li class="breadcrumb-item active">crear materia prima </li>
+            </ol>
+    </div>
+    <!-- /.content-header -->
+    <div class="wrapper">
+        <div class="card">
+            <h2>Crear Materia Prima</h2>
+            <form action="" method="POST">
+                {% csrf_token %}
+                {{ form|crispy }}
+
+                <div class="btn-container">
+                    <button class="btn btn-success" type="submit">Agregar {{ titulo }}</button>
+                    <a class="btn btn-danger" href="{% url 'materias-primas' %}">Regresar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+    $(document).ready(function() {
+        var tipoSelect = $("#id_tipo");
+        var colorField = $("#div_id_color");  // Cambia esto para apuntar al div que rodea al campo de color
+
+        // Función para mostrar u ocultar el campo de color según la selección del tipo
+        function toggleColorField() {
+            if (tipoSelect.val() === "2") {  // Cambia "2" por el valor correcto para Esparto
+                colorField.hide();
+            } else {
+                colorField.show();
+            }
+        }
+
+        // Llama a la función al cargar la página y cuando cambie la selección del tipo
+        toggleColorField();
+        tipoSelect.on("change", toggleColorField);
+    });
+</script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        .wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .card {
+            padding: 20px;
+        }
+        .form-control {
+            margin-bottom: 15px;
+        }
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .btn {
+            margin-right: 10px;
+        }
+    </style>
+
+
+{% endblock contenido %}

@@ -1,0 +1,119 @@
+{% extends 'partials/body.html' %}
+{% load static %}
+{% block contenido %}
+    <!-- Content Header (Page header) -->
+    <div class="d-flex justify-content-end" style="height: 1px;">
+        <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="{% url 'index' %}">Inicio</a></li>
+            <li class="breadcrumb-item active"><a href="{% url 'producto' %}">Productos</a></li>
+            <li class="breadcrumb-item active">{{ titulo }} </li>
+        </ol>
+    </div>
+    <!-- /.content-header -->
+    <div class="wrapper">
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title"> {{ titulo }} </h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table id="example1" class="table table-bordered table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>Precio Unitario</th>
+                                            <th>Precio Fabricacion</th>
+                                            <th>Tamaño</th>
+                                            <th>Tipo</th>
+                                            <th>Stock</th>
+                                            <th>estado</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for producto in productos %}
+
+                                            {% if producto.estado != "0" %}
+                                                <tr>
+                                                    <td>{{ producto.nombre }}</td>
+                                                    <td>
+                                                        {% if producto.precio_unitario %}
+                                                            {{ producto.precio_formato_colombiano }}
+                                                        {% else %}
+                                                            Por definir
+                                                        {% endif %}
+                                                    </td>
+                                                    <td>
+                                                        {{ producto.costo_fabricacion }}
+                                                    </td> <!-- Mostrar el campo Precio Fabricación -->
+                                                    <td>{{ producto.get_tamano_display }}</td>
+                                                    <td>{{ producto.get_tipo_display }}</td>
+                                                    <!-- Nuevo: Mostrar el stock -->
+                                                    <td>{{ producto.stock }}</td>
+                                                    <td>{{ producto.get_estado_display }}</td>
+
+                                                    <td>
+
+
+                                                        <button type="button"
+                                                                data-ids="{{ producto.id }}"
+                                                                class="btnEliminar btn btn-danger"
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target="#modal-danger"
+                                                                style="{% if producto.stock > 0 %} display: none; {% endif %}">
+                                                            Eliminar
+                                                        </button>
+                                                        {% if producto.stock == '0' %}
+                                                            <a class="btn btn-primary btn-md bi bi-wrench m-1 me-1"
+                                                               href="{% url 'productos-modificar' producto.id %}">Modificar</a>
+                                                        {% endif %}
+
+                                                        {% if producto.costo_fabricacion %}
+                                                            <button type="button"
+                                                                    class="btn btn-success btn-md bi bi-wrench m-1 me-1"
+                                                                    onclick="window.location.href='{% url 'establecer_precio' producto.id %}'">
+                                                                Poner Precio
+                                                            </button>
+                                                        {% endif %}
+
+
+                                                    </td>
+                                                </tr>
+                                            {% endif %}
+                                        {% endfor %}
+                                        </tbody>
+                                        <tfoot>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>Precio Unitario</th>
+                                            <th>Precio Fabricacion</th>
+                                            <th>Tamaño</th>
+                                            <th>Tipo</th>
+                                            <th>Stock</th>
+                                            <th>estado</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+        <a href="{% url 'productos-crear' %}" class="btn btn-success w-25">Crear {{ titulo }}</a>
+    </div>
+
+{% endblock contenido %}

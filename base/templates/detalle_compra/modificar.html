@@ -1,0 +1,25 @@
+{% extends 'partials/body.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block contenido %}
+        <!-- Content Header (Page header) -->
+    <div class="d-flex justify-content-end" style="height: 1px;">
+            <ol class="breadcrumb float-sm-right" >
+                <li class="breadcrumb-item" ><a href="{% url 'index' %}">Inicio</a></li>
+                <li class="breadcrumb-item active" ><a href="{% url 'compras' %}">Compras</a></li>
+                <li class="breadcrumb-item active" ><a href="{% url 'detalle_compra' %}">Detalle Compra</a></li>
+                <li class="breadcrumb-item active">Modificar Detalle Compra </li>
+            </ol>
+    </div>
+    <!-- /.content-header -->
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{form|crispy}}
+            <input type="submit" value="Modificar {{titulo}}">  <a href="{% url 'detalle_compra' %}" class="btn btn-danger">Regresar</a>
+        </form>
+{% block extrajs %}
+    {{ form.media }}
+{% endblock extrajs %}
+
+{% endblock contenido %}

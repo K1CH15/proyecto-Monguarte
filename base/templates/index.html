@@ -1,0 +1,134 @@
+{% extends 'partials/body.html' %}
+
+{% block contenido %}
+    <!--carrusel-->
+
+    <div class="slider-container">
+        <div class="left-slide" style=" font-family: 'Dancing Script', cursive;">
+            <div class="divCarrusel" style="background-color: #ae192bf9">
+                <h1>Te ofrecemos</h1>
+                <p>nuestros productos 100% en lana</p>
+            </div>
+            <div class="divCarrusel" style="background-color: #2A86BA">
+                <h1>Materia Prima</h1>
+                <p> para realización de productos</p>
+            </div>
+            <div class="divCarrusel" style="background-color: hwb(33 35% 42%)">
+                <h1>Fase de esquilado</h1>
+                <p>de la lana</p>
+            </div>
+            <div class="divCarrusel" style="background-color: #edaf68">
+                <h1> Fase de hilado</h1>
+                <p>de la lana </p>
+            </div>
+        </div>
+        <div class="right-slide">
+            <div style="background-image: url('/static/img/1245.png')"></div>
+            <div style="background-image: url('/static/img/22.png')"></div>
+            <div style="background-image: url('/static/img/3031.png')"></div>
+            <div style="background-image: url('/static/img/porquesi.png')"></div>
+        </div>
+        <div class="action-buttons">
+            <button class="down-button">
+                <i class="fas fa-arrow-down"></i>
+            </button>
+            <button class="up-button">
+                <i class="fas fa-arrow-up"></i>
+            </button>
+        </div>
+    </div>
+    <!--carrusel-->
+    
+    <div class=" px-5 py-1" id="custom-cards" style=" font-family: 'Dancing Script', cursive;">
+        <h1 class="pb-2 border-bottom" _msttexthash="533741" _msthash="28"style=" font-family: 'Dancing Script', cursive;">MonguArte</h1>
+    </div>
+    <div class="px-5 py-1" id="custom-cards" style=" font-family: 'Dancing Script', cursive;">
+        <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
+            <div class="col">
+                <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"style="background-image: url('/static/img/bufandadecolor.png');">
+                    <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+                        <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold" _msttexthash="654680" _msthash="29">Ropa para bebe frabicada con lana</h3>
+                        <ul class="d-flex list-unstyled mt-auto">
+                            <!--<li class="me-auto">
+                              <img src="https://github.com/twbs.png" alt="Bootstrap" width="32" height="32" class="rounded-circle border border-white" _mstalt="138918" _msthash="30">
+                            </li>-->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
+                     style="background-image: url('/static/img/lana.png');">
+                    <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+                        <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold" _msttexthash="1798992" _msthash="33">fabricado
+                            por MonguArte</h3>
+                        <ul class="d-flex list-unstyled mt-auto">
+                            <!--<li class="me-auto">
+                              <img src="https://github.com/twbs.png" alt="Bootstrap" width="32" height="32" class="rounded-circle border border-white" _mstalt="138918" _msthash="34">
+                            </li>-->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
+                     style="background-image: url('/static/img/2121.png');">
+                    <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
+                        <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold  " _msttexthash="1065376" _msthash="37">
+                            Material usado para la fabricación de nuestros productos</h3>
+                        <ul class="d-flex list-unstyled mt-auto">
+                            <!--<li class="me-auto">
+                              <img src="https://github.com/twbs.png" alt="Bootstrap" width="32" height="32" class="rounded-circle border border-white" _mstalt="138918" _msthash="38">
+                            </li>-->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock contenido %}
+
+
+{% block javascript_content %}
+    <script>
+        /*carrusel*/
+        const sliderContainer = document.querySelector('.slider-container')
+        const slideRight = document.querySelector('.right-slide')
+        const slideLeft = document.querySelector('.left-slide')
+        const upButton = document.querySelector('.up-button')
+        const downButton = document.querySelector('.down-button')
+        const slidesLength = slideRight.querySelectorAll('div').length
+        /*carrusel*/
+
+        /*carrusel*/
+        let activeSlideIndex = 0
+
+        slideLeft.style.top = `-${(slidesLength - 1) * 100}vh`
+
+        upButton.addEventListener('click', () => changeSlide('up'))
+        downButton.addEventListener('click', () => changeSlide('down'))
+
+        const changeSlide = (direction) => {
+            const sliderHeight = sliderContainer.clientHeight
+            if (direction === 'up') {
+                activeSlideIndex++
+                if (activeSlideIndex > slidesLength - 1) {
+                    activeSlideIndex = 0
+                }
+            } else if (direction === 'down') {
+                activeSlideIndex--
+                if (activeSlideIndex < 0) {
+                    activeSlideIndex = slidesLength - 1
+                }
+            }
+
+            slideRight.style.transform = `translateY(-${activeSlideIndex * sliderHeight}px)`
+            slideLeft.style.transform = `translateY(${activeSlideIndex * sliderHeight}px)`
+        }
+        /*carrusel*/
+    </script>
+
+{% endblock javascript_content %}

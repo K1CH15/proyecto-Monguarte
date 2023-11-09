@@ -1,0 +1,24 @@
+{% extends 'partials/body.html' %}
+{% load crispy_forms_tags %}
+
+{% block contenido %}
+<div class="container" style="min-height: 100vh; display: flex; justify-content: center; align-items: center;">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="text-center">Poner Precio de Producto: {{ producto.nombre }}</h2>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary">Guardar Precio</button>
+                        <a href="{% url 'lista_de_productos' %}" class="btn btn-secondary">Volver a la lista de productos</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock contenido %}

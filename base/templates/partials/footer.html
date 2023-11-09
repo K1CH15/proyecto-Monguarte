@@ -1,0 +1,82 @@
+{% load static %}
+
+{% include 'partials/scripts.html' %}
+
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+<div  class="cuerpo">
+    <footer class=" ">
+        <div class="waves">
+            <div class="wave" id="wave1"></div>
+            <div class="wave02" id="wave2"></div>
+            <div class="wave" id="wave3"></div>
+            <div class="wave01" id="wave4"></div>
+            <div class="row">
+              <style>
+                .d-block a {
+                  display: flex;
+                  align-items: center;
+                  margin-right: 10px;
+                }
+
+                .d-block a i {
+                  font-size: 60px;
+                  color: rgb(230, 206, 206);
+                }
+
+                /* Estilos cuando el mouse se desplaza sobre el texto */
+                .text-body-secondary:hover {
+                  color: #d71da8; /* Cambiar el color al tocar el texto */
+                  animation: shake 0.10s; /* Agregar una animación de sacudida */
+                }
+
+                /* Definir la animación shake */
+                @keyframes shake {
+                  0% { transform: translateX(0); }
+                  25% { transform: translateX(-5px); }
+                  50% { transform: translateX(5px); }
+                  75% { transform: translateX(-5px); }
+                  100% { transform: translateX(0); }
+                }
+              </style>
+                      <div class="d-flex align-items-center justify-content-center mb-3">
+                        <a  title="Redireccionamiento para el correo electronico" href="mailto:asociacionmonguarte@gmail.com">
+                          <i class="fa fa-envelope" style="font-size: 30px; color: white; margin-right: 20px;"></i>
+                        </a>
+
+                        <a  title="Redirreccionamiento para whatsapp" href="https://wa.me/+573225815002" target="_blank">
+                          <i class="fab fa-whatsapp" style="font-size: 30px; color: white; margin-right: 20px;"></i>
+                        </a>
+
+                        <a  title="Redirrecionamiento de google maps" href="https://maps.google.com" target="_blank">
+                          <i class="fas fa-map-marker-alt" style="font-size: 30px; color: white; margin-right: 20px;"></i>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </footer>
+              <footer>
+                <div class="container">
+                  <div class="row justify-content-center">
+                    <div class="col-auto">
+                      <small class="d-block mb- text-body-secondary text-center">
+                        <font style="vertical-align: inherit;"><font style="vertical-align: inherit; color:aliceblue">
+                          Copyright © 2023 MonguArte | Todos los derechos reservados
+                        </font>
+                      </small>
+                    </div>
+                  </div>
+                </div>
+              </footer>
+</div>
+
+<!--
+footer class="container py-5"
+
+  </footer>
+
+
+
+
+

@@ -1,0 +1,131 @@
+{% extends 'partials/body.html' %}
+{% load static %}
+{% block contenido %}
+    <!-- Content Header (Page header) -->
+    <div class="d-flex justify-content-end" style="height: 1px;">
+        <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="{% url 'index' %}">Inicio</a></li>
+            <li class="breadcrumb-item active"><a href="{% url 'ventas' %}">compras</a></li>
+            <li class="breadcrumb-item active">{{ titulo }} </li>
+        </ol>
+    </div>
+    <!-- /.content-header -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row px-1 px-sm-3" style="min-width: 270px;">
+                <div class="col px-1 px-sm-3">
+                    <div class="px-1 px-sm-3">
+                        <div class="fs-1 fw-bold">
+                            <h3 class="py-5">{{ titulo }}</h3>
+                        </div>
+
+                        <div class="d-flex">
+                            <div class="p-5 mx-3 "
+                                 style=" background-color: #fcf9f5; border-color: #68411d; border-width: 3px; border-style: solid;">
+                                <b>Codigo de Compra</b> <br>
+                                <p>{{ fabricacion.id }}</p>
+                                <b>Fecha</b> <br>
+                                <p>{{ fabricacion.fecha }}</p>
+                                <b>Producto</b><br>
+                                <p>{{ fabricacion.producto }}</p>
+                                <b>Cantidad Producto</b><br>
+                                <p>{{ fabricacion.cantidad_producto}}</p>
+                                {% if fabricacion_detalles %}
+                                    <!-- Verifica si hay detalles de compra en la lista -->
+                                    <a type="button" href="{% url 'fabricacion-finalizar' fabricacion.id %}"
+                                       class="btn btn-info">
+                                        <i class="bi bi-trash">Finalizar Fabricacion</i>
+                                    </a>
+                                {% endif %}
+                                <a href="{% url 'fabricaciones' %}" class="btn btn-danger">Regresar</a>
+                            </div>
+
+                            <div class="table-responsive p-3 "
+                                 style=" background-color: #fcf9f5; border-color: #68411d; border-width: 3px; border-style: solid;">
+                                <table id="example1" class="table table-bordered table-striped py-5">
+                                    <thead style="background-color: #fcf9f5">
+                                    <tr style="background-color: #d4c6b5;text-align: center;">
+                                        <th>Materia Prima</th>
+                                        <th>Cantidad Materia Prima</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for fabricacion_detalle in fabricacion_detalles %}
+                                        {% if detalle_venta.estado != "0" %}
+                                            <tr style="background-color: #f3eee9">
+                                                <td style="color: #68411d;text-align: center;">{{ fabricacion_detalle.materia_prima.nombre }}</td>
+                                                <td style="color: #68411d; text-align: center;">
+                                                    <form method="POST"
+                                                          action="{% url 'aumentarr_cantidad' fabricacion_detalle.id %}">
+                                                        {% csrf_token %}
+                                                        <button type="submit" class="btn btn-sm btn-primary">+</button>
+                                                    </form>
+                                                    {{ fabricacion_detalle.cantidad_materia }}
+                                                    <form method="POST"
+                                                          action="{% url 'disminuirr_cantidad' fabricacion_detalle.id %}">
+                                                        {% csrf_token %}
+                                                        <button type="submit" class="btn btn-sm btn-primary">-</button>
+                                                    </form>
+                                                </td>
+                                                <td>
+                                                    <form method="POST"
+                                                          action="{% url 'eliminar_fabricacion_detalle' fabricacion_detalle.id %}">
+                                                        {% csrf_token %}
+                                                        <button type="submit" class="btn btn-sm btn-danger">Eliminar
+                                                        </button>
+
+                                                    </form>
+                                                </td>
+
+                                            </tr>
+                                        {% endif %}
+                                    {% endfor %}
+                                    <tr style="background-color: #f3eee9">
+                                        <form method="POST">
+                                            {% csrf_token %}
+                                            <td style="color: #68411d;text-align: center;">
+                                                <select name="materia_prima" class="select form-control" required="" id="id_materia_prima" style="width: 150px; height: 100cm;">
+
+                                                    <option value="" selected="">---------</option>
+                                                    {% for materia_prima in materias %}
+                                                        <option value="{{ materia_prima.id }}">{{ materia_prima }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <input type="number" name="cantidad_materia" value="0" min="0"
+                                                       class="numberinput form-control" required=""
+                                                       id="id_cantidad_materia" style="width: 80px;">
+                                            </td>
+                                            <td>
+                                                <button type="submit" class="btn btn-success">+</button>
+                                            </td>
+                                        </form>
+                                    </tr>
+                                    </tbody>
+
+                                </table>
+                            </div>
+
+                        </div>
+                        <!-- /.card-body -->
+
+                    </div>
+                    <!-- /.card -->
+
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+
+
+    </section>
+    <script>
+        $(document).ready(function() {
+            $('#id_materia_prima').select2();
+        });
+    </script>
+{% endblock contenido %}

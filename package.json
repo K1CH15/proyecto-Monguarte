@@ -1,0 +1,91 @@
+{
+  "name": "monguarte",
+  "version": "1.0.0",
+  "description": "aplicativo para la gestión de informacion de la empresa monguarte",
+  "main": "index.js",
+  "scripts": {
+
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "buildcss": "sass --style=compressed resources/scss/:static/css/",
+    "buildjs": "uglifyjs-folder resources/js/ -eo static/js/",
+    "build": "npm run buildcss & npm run buildjs",
+    "watch": "npm-watch",
+    "super": "python manage.py createsuperuser",
+    "usuario": "python manage.py makemigrations usuario",
+    "producto": "python manage.py makemigrations productos",
+    "inventario": "python manage.py makemigrations inventario",
+    "compra": "python manage.py makemigrations compra",
+    "venta": "python manage.py makemigrations venta",
+    "cuentas": "python manage.py makemigrations accounts & python manage.py migrate ",
+    "migrate": "python manage.py migrate",
+    "migrations": "npm run usuario & npm run producto & npm run inventario & npm run compra & npm run venta & npm run cuentas",
+    "server": "python manage.py runserver",
+    "ver": "npm run migrations & npm run migrate  & npm run server",
+
+    "bkusuario" : "python manage.py dumpdatautf8 usuario --indent 4 --output usuario/seed/usuario.json",
+    "bkproducto": "python manage.py dumpdatautf8 productos --indent 4 --output productos/seed/producto.json",
+    "bkinventario": "python manage.py dumpdatautf8 inventario --indent 4 --output inventario/seed/inventario.json",
+    "bkcompra": "python manage.py dumpdatautf8 compra --indent 4 --output compra/seed/compra.json",
+    "bkevnta": "python manage.py dumpdatautf8 venta --indent 4 --output venta/seed/venta.json ",
+    "backup": "npm run bkusuario & npm run bkproducto  & npm run bkinventario  & npm run bkcompra  & npm run bkevnta",
+
+    "resusuario": "python manage.py loaddatautf8 usuario/seed/usuario.json",
+    "resproducto": "python manage.py loaddatautf8 productos/seed/producto.json",
+    "resinventario" : "python manage.py loaddatautf8 inventario/seed/inventario.json",
+    "rescompra": "python manage.py loaddatautf8 compra/seed/compra.json",
+    "resventa": "python manage.py loaddatautf8 venta/seed/venta.json",
+    "resdb" : "npm run resusuario & npm run resproducto & npm run resinventario & npm run rescompra & npm run resventa"
+
+  },
+  "watch": {
+    "build": {
+      "patterns": [
+        "resources"
+      ],
+      "extensions": "js,scss"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/K1CH15/Monguarte.git"
+  },
+  "keywords": [
+    "Monguarte",
+    "Artesanias"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/K1CH15/Monguarte/issues"
+  },
+  "homepage": "https://github.com/K1CH15/Monguarte#readme",
+  "dependencies": {
+    "@popperjs/core": "^2.11.8",
+    "accessibility": "^4.5.7",
+    "bootstrap": "^5.2.3",
+    "bootstrap-icons": "^1.10.5",
+    "datatables.net": "^1.13.4",
+    "datatables.net-bs4": "^1.13.4",
+    "datatables.net-bs5": "^1.13.4",
+    "datatables.net-buttons-bs4": "^2.3.6",
+    "datatables.net-responsive": "^2.4.1",
+    "datatables.net-responsive-bs": "^2.4.1",
+    "datatables.net-responsive-bs4": "^2.4.1",
+    "datatables.net-responsive-bs5": "^2.4.1",
+    "font-awesome": "^4.7.0",
+    "fontawesome-free": "^1.0.4",
+    "gulp": "^4.0.2",
+    "jquery": "^3.7.0",
+    "jszip": "^3.10.1",
+    "npm-watch": "^0.11.0",
+    "overlayscrollbars": "^2.2.0",
+    "pdfmake": "^0.2.7",
+    "sass": "^1.63.6",
+    "sass-lint": "^1.13.1",
+    "select2": "^4.1.0-rc.0",
+    "sweetalert2": "^11.4.8",
+    "toastr": "^2.1.4",
+    "uglify-js": "^3.17.4",
+    "uglifyjs-folder": "^3.3.0"
+  }
+}

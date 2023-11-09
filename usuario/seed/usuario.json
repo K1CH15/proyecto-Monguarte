@@ -1,0 +1,38 @@
+[
+{
+    "model": "usuario.persona",
+    "pk": 1,
+    "fields": {
+        "deleted": null,
+        "deleted_by_cascade": false,
+        "tipo_documento": "CC ",
+        "numero_documento": "1002414082",
+        "nombres": "camilo",
+        "apellidos": "perez",
+        "telefono": "3027230433",
+        "correo_electronico": "gumball18@gmail.com",
+        "user": null,
+        "rol": null,
+        "estado": "1",
+        "ips": "dasd"
+    }
+},
+{
+    "model": "usuario.persona",
+    "pk": 2,
+    "fields": {
+        "deleted": null,
+        "deleted_by_cascade": false,
+        "tipo_documento": "CC ",
+        "numero_documento": "4545646546",
+        "nombres": "camilopasdasd",
+        "apellidos": "kichitos",
+        "telefono": "3023720234",
+        "correo_electronico": "gumball18@jhfgh.com",
+        "user": null,
+        "rol": 1,
+        "estado": "1",
+        "ips": "nueva-eps"
+    }
+}
+]

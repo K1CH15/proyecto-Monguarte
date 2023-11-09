@@ -1,0 +1,62 @@
+{% extends 'partials/body.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block contenido %}
+    <!-- Content Header (Page header) -->
+    <div class="d-flex justify-content-end" style="height: 1px;">
+        <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="{% url 'index' %}">Inicio</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'inventario' %}">Inventario</a></li>
+            <li class="breadcrumb-item active"><a href="{% url 'fabricaciones' %}">Fabricación</a></li>
+
+        </ol>
+    </div>
+    <!-- /.content-header -->
+    <div class="wrapper">
+        <div class="card">
+            <h2>Crear Fabricación</h2>
+            <form action="" method="POST">
+                {% csrf_token %}
+                {{ form|crispy }}
+
+                <div class="btn-container">
+                    <button class="btn btn-success" type="submit">{{ titulo }}</button>
+                    <a class="btn btn-danger" href="{% url 'fabricaciones' %}">Regresar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+{% block extrajs %}
+    {{ form.media }}
+{% endblock extrajs %}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        .wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .card {
+            padding: 20px;
+        }
+        .form-control {
+            margin-bottom: 15px;
+        }
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .btn {
+            margin-right: 10px;
+        }
+    </style>
+
+{% endblock contenido %}
+

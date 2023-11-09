@@ -1,0 +1,134 @@
+{% extends 'partials/body-login.html' %}
+{% load static %}
+{% block contenido %}
+
+    <!-- Section: Design Block -->
+    <section class="text-center text-lg-start">
+        <style>
+            .cascading-right {
+                margin-right: -50px;
+            }
+
+            @media (max-width: 991.98px) {
+                .cascading-right {
+                    margin-right: 0;
+                }
+            }
+            .custom-shadow {
+                box-shadow: 0 0 25px rgba(0, 0, 0, 1);
+            }
+            .container.py-4 {
+                height: 100vh;
+                overflow: auto;
+            }
+            .custom-div {
+                height: 80vh;
+                overflow: auto;
+            }
+        </style>
+
+        <!-- Jumbotron -->
+        <div class="container py-4">
+            <div class="row align-items-center w-100">
+                <div class="col-lg-6 col-md-12 mb-5 mb-lg-0">
+                    <div class="card cascading-right" style="background: hsla(0, 0%, 100%, 0.55);backdrop-filter: blur(30px);">
+                        <div class="card-body p-5 shadow-5 text-center">
+                            <div class="text-center">
+                                <img class="profile-user-img img-fluid rounded-circle"src="{% static '/img/Monguarte_color.jpg' %}"alt="User profile picture">
+                            </div>
+                            <!-- 2 column grid layout with text inputs for the first and last names -->
+                            <form method="post">
+                                {% csrf_token %}
+                                <!-- Usuario -->
+                                <div class="form-outline mb-4">
+                                    <div class="input-group mb-3">
+                                        <input type="text" name="{{ form.username.name }}" class="form-control"placeholder="Usuario">
+                                        <div class="input-group-append">
+                                            <div class="input-group-text">
+                                                <i class="bi bi-person-fill"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Password input -->
+                                <div class="form-outline mb-4">
+                                    <div class="input-group mb-3">
+                                        <input type="password" name="{{ form.password.name }}" class="form-control"placeholder="Contraseña">
+                                        <div class="input-group-append">
+                                            <div class="input-group-text">
+                                                <i class="bi bi-lock-fill"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- recordario contraseña -->
+                                <div class="form-check d-flex justify-content-center mb-4">
+                                    <div class="col-8">
+                                        <div class="icheck-primary">
+                                            <button type="submit" class="btn btn-primary btn-block mb-4">Iniciar Sesión</button>
+                                        <div>
+                                            <p>¿No tienes una cuenta? <a href="{% url 'Registrarse' %}"
+                                                data-bs-toggle="tooltip"
+                                                data-bs-title="Registrar">Registrarse</a>
+                                            </p>
+                                            <p class="mb-1">
+                                                <a href="{% url 'password_reset' %}">¿Olvidaste tu contraseña?</a>
+                                            </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- inicio sesion button -->
+
+
+                            </form>
+                            {% if form.non_field_errors %}
+                                <div class="alert alert-danger" role="alert">
+                                    {{ form.non_field_errors }}
+                                </div>
+                            {% endif %}
+
+                            {% if form.username.errors %}
+                                <div class="alert alert-danger" role="alert">
+                                    {{ form.username.errors }}
+                                </div>
+                            {% endif %}
+
+                            {% if form.password.errors %}
+                                <div class="alert alert-danger" role="alert">
+                                    {{ form.password.errors }}
+                                </div>
+                            {% endif %}
+
+
+
+                            <!-- Register buttons -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-12 mb-5 mb-lg-0">
+                    <img src="{% static '/img/WhatsApp Image 2023-05-24 at 4.27.49 PM.jpeg' %}" class="w-100 rounded-0 custom-shadow"alt=""/>
+                </div>
+            </div>
+        </div>
+        <!-- Jumbotron -->
+    </section>
+    <!-- Section: Design Block -->
+<div class="conta">
+    <div class="redes">
+        <a href="#" class="opcion" onclick="abrirPDF()">Ayuda</a>
+    </div>
+</div>
+<script>
+    function abrirPDF() {
+        window.open('/inicio/abrir-pdf/', '_blank');
+    }
+</script>
+
+
+
+{% endblock contenido %}

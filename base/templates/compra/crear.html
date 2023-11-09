@@ -1,0 +1,52 @@
+{% extends 'partials/body.html' %}
+{% load crispy_forms_tags %}
+
+{% block contenido %}
+    <!-- Content Header (Page header) -->
+    <div class="d-flex justify-content-end" style="height: 1px;">
+        <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="{% url 'index' %}">Inicio</a></li>
+            <li class="breadcrumb-item active"><a href="{% url 'compra' %}">Compras</a></li>
+            <li class="breadcrumb-item active"><a href="{% url 'compra' %}">Compra</a></li>
+            <li class="breadcrumb-item active">Crear Compra</li>
+        </ol>
+    </div>
+    <!-- /.content-header -->
+
+        <form action="" method="POST">
+        {% csrf_token %}
+        {{form|crispy}}
+        <input class="btn btn-success" type="submit" value="Agregar {{titulo}}">
+            <a href="{% url 'compra' %}" class="btn btn-danger">Regresar</a>
+        </form>
+{% block extrajs %}
+    {{ form.media }}
+{% endblock extrajs %}
+    <script>
+        function guardarYRedireccionar(event) {
+            event.preventDefault(); // Evitar que se envíe el formulario de inmediato
+
+            // Obtener los datos del formulario
+            var form = document.getElementById('myForm');
+            var formData = new FormData(form);
+
+            // Enviar los datos del formulario al servidor para guardarlos
+            fetch(form.action, {
+                method: form.method,
+                body: formData
+            })
+                .then(response => {
+                    // Aquí puedes manejar la respuesta del servidor después de guardar el formulario
+                    // Por ejemplo, mostrar un mensaje de éxito, mostrar errores, etc.
+
+                    // Después de guardar el formulario, redireccionar al formulario "detalle_compra"
+                    window.location.href = "{% url 'detalle_compra-crear' %}";
+                })
+                .catch(error => {
+                    console.error('Error al guardar el formulario:', error);
+                });
+        }
+    </script>
+{% endblock contenido %}
+
+

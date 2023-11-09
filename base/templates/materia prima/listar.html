@@ -1,0 +1,100 @@
+{% extends 'partials/body.html' %}
+
+{% block contenido %}
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="{% url 'index' %}">Inicio</a></li>
+                        <li class="breadcrumb-item"><a href="{% url 'inventario' %}">inventario</a></li>
+                        <li class="breadcrumb-item active">materia prima</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <div class="wrapper">
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title"> {{ titulo }} </h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table id="example1" class="table table-bordered table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>Unidad de Medida</th>
+                                            <th>Tipo</th>
+                                            <th>Color</th>
+                                            <th>Stock</th> <!-- Nuevo campo -->
+                                            <th>Precio Unitario</th>
+                                            <th>Acción</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for materia_prima in materias %}
+                                            {% if materia_prima.estado != "0" %}
+                                                <tr>
+                                                    <td>{{ materia_prima.nombre }}</td>
+                                                    <td>{{ materia_prima.get_unidad_medida_display }}</td>
+                                                    <td>{{ materia_prima.get_tipo_display }}</td>
+                                                    <td>{{ materia_prima.color }}</td>
+                                                    <td>{{ materia_prima.stock }}</td> <!-- Nuevo campo -->
+                                                    <td>{{ materia_prima.precio_unitario_formato_colombiano }}</td>
+                                                    <td>
+                                                        <button type="button"
+                                                                data-ids="{{ materia_prima.id }}"
+                                                                class="btnEliminar btn btn-danger"
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target="#modal-danger"
+                                                                {% if materia_prima.stock > 0 %} disabled {% endif %}>
+                                                            Eliminar
+                                                        </button>
+                                                        <a class="btn btn-primary btn-md bi bi-wrench m-1 me-1"
+                                                           href="{% url 'materias-primas-modificar' materia_prima.id %}">Modificar</a>
+                                                    </td>
+                                                </tr>
+                                            {% endif %}
+                                        {% endfor %}
+                                        </tbody>
+                                        <tfoot>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>Unidad de Medida</th>
+                                            <th>Tipo</th>
+                                            <th>Color</th>
+                                            <th>Stock</th> <!-- Nuevo campo -->
+                                            <th>Precio unitario</th>
+                                            <th>Acción</th>
+                                        </tr>
+
+                                        </tfoot>
+                                    </table>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+        <a href="{% url 'materias-primas-crear' %}" class="btn btn-success w-25">Crear {{ titulo }}</a>
+    </div>
+
+{% endblock contenido %}

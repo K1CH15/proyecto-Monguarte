@@ -1,0 +1,96 @@
+{% extends 'partials/body.html' %}
+{% load crispy_forms_tags %}
+
+{% block contenido %}
+    <div class="d-flex justify-content-end" style="height: 1px;">
+        <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="{% url 'index' %}">Inicio</a></li>
+            <li class="breadcrumb-item active"><a href="{% url 'compras' %}">Compras</a></li>
+            <li class="breadcrumb-item active"><a href="{% url 'detalle_compra' %}">Detalle Compra</a></li>
+            <li class="breadcrumb-item active">Crear Detalle Compra</li>
+        </ol>
+    </div>
+
+    <!-- Content Header (Page header) -->
+
+ <div class="table-responsive">
+    <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>N° Registro</th>
+                <th>Fecha</th>
+                <th>Admistrador</th>
+                <th>Proveedor</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for compra in comprasn %}
+                {% if compra.estado != "0" %}
+                    <tr>
+                        <td>{{ compra.id }}</td>
+                        <td>{{ compra.fecha }}</td>
+                        <td>{{ compra.persona_admin }}</td>
+                        <td>{{ compra.persona_proveedor }}</td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+    <!-- Agrega el formulario de creación de compra debajo de la tabla -->
+   <div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Crear {{ titulo }}</h3>
+    </div>
+    <div class="card-body">
+        <form action="" method="POST" id="myForm">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button class="btn btn-success" type="button" onclick="mostrarModal()">
+                Agregar {{ titulo }}</button>
+            <a href="{% url 'detalle_compra' %}" class="btn btn-danger">Regresar</a>
+        </form>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirmar acción</h5>
+            </div>
+            <div class="modal-body">
+                ¿Estás seguro de que deseas agregar el detalle de compra?
+            </div>
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-primary" id="confirmButton">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% block extrajs %}
+    {{ form.media }}
+{% endblock extrajs %}
+<script>
+    function mostrarModal() {
+        $('#confirmModal').modal('show');
+    }
+
+    $(document).ready(function() {
+        $('#confirmButton').on('click', function() {
+            var form = document.getElementById('myForm');
+            if (form.checkValidity()) {
+                form.submit(); // Envía el formulario
+            } else {
+                // Mostrar mensajes de error de validación en campos resaltados en rojo
+                form.reportValidity();
+            }
+        });
+    });
+</script>
+
+
+{% endblock contenido %}
+

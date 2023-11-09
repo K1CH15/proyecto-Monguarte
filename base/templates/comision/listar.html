@@ -1,0 +1,69 @@
+{% extends 'partials/body.html' %}
+{% load static %}
+{% block contenido %}
+    <!-- Content Header (Page header) -->
+    <div class="d-flex justify-content-end" style="height: 1px;">
+        <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="{% url 'index' %}">Inicio</a></li>
+            <li class="breadcrumb-item active"><a href="{% url 'usuario' %}">Usuarios</a></li>
+            <li class="breadcrumb-item active">{{ titulo }} </li>
+        </ol>
+    </div>
+    <!-- /.content-header -->
+
+    <div class="wrapper">
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">{{ titulo }}</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table id="example1" class="table table-bordered table-striped">
+                                        <thead>
+                                        <tr>
+
+                                            <th>N° de Registro</th>
+                                            <th>Fecha</th>
+                                            <th>Comisión por Venta</th>
+
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for comision in comisionesn %}
+                                            <tr>
+                                                <td>{{ comision.id }}</td>
+                                                <td>{{ comision.fecha }}</td>
+                                                <td>{{ comision.valor_comision_formato_colombiano|default_if_none:"0" }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                        <tfoot>
+                                        <tr>
+                                            <th>N° de Registro</th>
+                                            <th>Fecha</th>
+                                            <th>Comisión por venta</th>
+                                        </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+    </div>
+
+{% endblock contenido %}
+

@@ -1,0 +1,16 @@
+[
+{
+    "model": "inventario.materia_prima",
+    "pk": 1,
+    "fields": {
+        "deleted": null,
+        "deleted_by_cascade": false,
+        "nombre": "sdasd",
+        "unidad_medida": "1",
+        "tipo": "1",
+        "color": "dasd",
+        "estado": "1",
+        "stock": 0
+    }
+}
+]
