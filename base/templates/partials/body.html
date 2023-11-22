@@ -11,7 +11,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% bootstrap_css %}
     {% bootstrap_javascript %}
-     <link rel="apple-touch-icon" sizes="57x57" href="{% static 'img/favicon/apple-icon-57x57.png' %}">
+    <link href="{% static '/node_modules/select2/dist/css/select2.min.css' %}" rel="stylesheet"/>
+    <style href="{% static '/css/fonts.googleapis.com_css2_family=Dancing+Script_wght@600&display=swap.css' %}"></style>
+    <link rel="apple-touch-icon" sizes="57x57" href="{% static 'img/favicon/apple-icon-57x57.png' %}">
     <link rel="apple-touch-icon" sizes="60x60" href="{% static 'img/favicon/apple-icon-60x60.png' %}">
     <link rel="apple-touch-icon" sizes="72x72" href="{% static 'img/favicon/apple-icon-72x72.png' %}">
     <link rel="apple-touch-icon" sizes="76x76" href="{% static 'img/favicon/apple-icon-76x76.png' %}">
@@ -58,16 +60,21 @@
 {% include 'partials/header.html' %}
 {% include 'partials/accessibility.html' %}
 
-    <div class="container wrapper">
-        <div class="row g-5">
-            {% block contenido %}
+
+<div class="container wrapper">
+    <div class="row g-5">
+        {% block contenido %}
 
 
-            {% endblock contenido %}
-        </div>
+        {% endblock contenido %}
     </div>
+</div>
+
 {% include 'partials/modal.html' %}
+
+
 {% include 'partials/footer.html' %}
+
 </body>
 <!--boton flotante ayuda-->
 
@@ -88,5 +95,4 @@
 {% endblock javascript_content %}
 
 
-<!--boton flotante ayuda-->
 </html>

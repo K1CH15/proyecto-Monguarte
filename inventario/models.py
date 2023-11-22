@@ -1,11 +1,13 @@
+from decimal import Decimal
+
+from django.core.validators import MaxValueValidator
 from django.db import models
 from django.forms import ValidationError
 from django.utils.translation import gettext_lazy as _
+from safedelete.models import SafeDeleteModel
+
 from productos.models import Producto
 from venta.models import Detalle_Venta
-from django.core.validators import MaxValueValidator
-from safedelete.models import SafeDeleteModel
-from decimal import Decimal
 
 
 class Materia_Prima(SafeDeleteModel):
@@ -83,6 +85,7 @@ class Fabricacion_Detalle(SafeDeleteModel):
         if self.materia_prima and self.cantidad_materia > 0:
             costo_fabricacion = self.materia_prima.precio_unitario * self.cantidad_materia
         return costo_fabricacion
+
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
 # class Stock(SafeDeleteModel):

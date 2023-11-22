@@ -1,18 +1,17 @@
 from django.urls import path
-from usuario.views import persona_crear,persona_listar,persona_modificar,persona_eliminar
-from usuario.views import comision_crear,comision_listar,comision_modificar
 
-
+from usuario.views import comision_crear, comision_listar, comision_modificar
+from usuario.views import persona_crear, persona_listar, persona_modificar, persona_eliminar
 
 urlpatterns = [
     path('persona/', persona_listar, name="personas"),
-    path('persona/crear/', persona_crear, name="personas-crear" ),
+    path('persona/crear/', persona_crear, name="personas-crear"),
     path('persona/modificar/<int:pk>/', persona_modificar, name="personas-modificar"),
-    path('persona/eliminar/<int:pk>/', persona_eliminar, name="personas-eliminar" ),
+    path('persona/eliminar/<int:pk>/', persona_eliminar, name="personas-eliminar"),
 
-    path('comisión/', comision_listar , name="comisiones"),
-    path('comisión/crear/', comision_crear , name="comisiones-crear" ),
-    path('comisión/modificar/<int:pk>/', comision_modificar , name="comisiones-modificar" ),
+    path('comisión/', comision_listar, name="comisiones"),
+    path('comisión/crear/', comision_crear, name="comisiones-crear"),
+    path('comisión/modificar/<int:pk>/', comision_modificar, name="comisiones-modificar"),
 
     # path('contabilidad/eliminar/<int:pk>/', contabilidad_eliminar , name="contabilidades-eliminar" ),
     #

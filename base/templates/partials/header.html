@@ -1,14 +1,17 @@
 {% load static %}
 {% load bootstrap_icons %}
 <!-- CSS de Bootstrap -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="{% static '/node_modules/bootstrap/dist/css/bootstrap.min.css' %}">
+
 <header class=" sticky-top lh-1 py-0" style="  background-color: #6C210C">
 
     <nav class="navbar navbar-expand-lg bg-body-tertiary justify-content-center">
         <div class="container-fluid">
             <div class="d-flex justify-content-start justify-content-lg-center align-items-center mt-3 mb-3">
-                <a class="blog-header-logo text-body-emphasis text-light none" style="text-decoration: none" href="http://127.0.0.1:8000/inicio/">
-                    <img src="/static/img/Monguarte_color.jpg" class="rounded-circle d-inline-block "alt="Bootstrap" width="60"height="60">
+                <a class="blog-header-logo text-body-emphasis text-light none" style="text-decoration: none"
+                   href="http://127.0.0.1:8000/inicio/">
+                    <img src="/static/img/favicon/apple-icon.png" class="rounded-circle d-inline-block " alt="Bootstrap"
+                         width="60" height="60">
                 </a>
             </div>
             <div class="collapse navbar-collapse d-md-block justify-content-center" id="navbarSupportedContent">
@@ -16,7 +19,7 @@
                     <li class="mb-1" style="display: inline-block;">
                         <div class="custom-dropdown">
                             <a class="custom-dropbtn" style="text-decoration: none"
-                               href="#">Compra</a>
+                               href="{% url 'compras' %}">Compra</a>
                             <div class="custom-dropdown-content">
                                 <a href="{% url 'compra' %}">Compra</a>
                             </div>
@@ -36,7 +39,7 @@
                             <div class="custom-dropdown-content">
                                 <a href="{% url 'fabricaciones' %}">Fabricación</a>
                                 <a href="{% url 'materias-primas' %}">Materia Prima</a>
-{#                                <a href="{% url 'stock' %}">Stock</a>#}
+                                {#                                <a href="{% url 'stock' %}">Stock</a>#}
                             </div>
                         </div>
                     </li>
@@ -57,7 +60,7 @@
                         </div>
                     </li>
                     <li class="border-top my-2" style="display: inline-block;"></li>
-                    <li class="mb-1" style="display: inline-block;"><i class="bi bi-0-square"></i>
+                    <li class="mb-1" style="display: inline-block;">
                     </li>
                     <li class="mb-1" style="display: inline-block;">
                 </ul>
@@ -70,11 +73,14 @@
                         {% if user.is_authenticated %}
                             <li class="nav-item">
                                 <div class="dropdown">
-                                    <button class="btn btn-outline-danger dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Bienvenida, {{ user.username }} ({{ user.rol }})
+                                    <button class="btn btn-outline-danger dropdown-toggle" type="button"
+                                            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false">
+                                        Bienvenido, {{ user.username }} ({{ user.rol }})
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="{% url 'logout' %}" style="color: #fff;">Cerrar Sesión</a>
+                                        <a class="dropdown-item" href="{% url 'logout' %}" style="color: #fff;">Cerrar
+                                            Sesión</a>
                                     </div>
                                 </div>
                             </li>
@@ -87,25 +93,27 @@
     </nav>
 
 
-
     <div class="row flex-nowrap justify-content-center align-items-center " style="margin-left: 50px;">
         <div class="boton dropdown" id="mi-dropdown">
             <button class="nav-btn open-btn d-md-none d-md-inline-block">
                 <i class="fas fa-bars"></i>
             </button>
             <div class="nav nav-black " style="width: 340px; background-color:#6C210C ">
-                <div class="nav nav-red" style="width: 310px; background-color: ">
+                <div class="nav nav-red" style="width: 310px;">
                     <div class="nav nav-white" style="width: 280px;">
                         <button class="nav-btn close-btn">
                             <i class="fas fa-times"></i>
                         </button>
                         <div class="flex-shrink-0 p-3 " style="width: 200px;">
-                            <a href="#"class="d-flex align-items-center pb-3 mb-3 link-body-emphasis text-decoration-none text-primary border-bottom">
+                            <a href="#"
+                               class="d-flex align-items-center pb-3 mb-3 link-body-emphasis text-decoration-none text-primary border-bottom">
                                 <svg class="bi pe-none me-2" width="50" height="24">
                                     <use xlink:href="#bootstrap"></use>
                                 </svg>
-                                <span class="fs-5 fw-semibold"><fort style="vertical-align: inherit;"><fort style="vertical-align: inherit;;">
-                                        <img src="/static/img/Monguarte_color.jpg"alt="" class="rounded-circle" width="70"height="70"></fort></fort>
+                                <span class="fs-5 fw-semibold"><fort style="vertical-align: inherit;"><fort
+                                        style="vertical-align: inherit;;">
+                                        <img src="/static/img/Monguarte_color.jpg" alt="" class="rounded-circle"
+                                             width="70" height="70"></fort></fort>
                                 </span>
                             </a>
                             <ul class="list-unstyled ps-0">
@@ -131,7 +139,7 @@
                                         <div class="custom-dropdown-content">
                                             <a href="{% url 'fabricaciones' %}">Fabricación</a>
                                             <a href="{% url 'materias-primas' %}">Materia Prima</a>
-{#                                            <a href="{% url 'stock' %}">Stock</a>#}
+                                            {#
                                         </div>
                                     </div>
                                 </li>
@@ -157,7 +165,9 @@
                                     <div class="custom-dropdown">
                                         <button class="custom-dropbtn1">Cuenta</button>
                                         <div class="custom-dropdown-content">
-                                            <button class="logout-button"><a href="{% url 'logout' %}"class="custom-link">Cerrar Sesión</a></button>
+                                            <button class="logout-button"><a href="{% url 'logout' %}"
+                                                                             class="custom-link">Cerrar Sesión</a>
+                                            </button>
                                         </div>
                                     </div>
                                 </li>
@@ -165,16 +175,17 @@
                         </div>
                     </div>
                     <div class="col-4 d-flex justify-content-end align-items-center">
-                        <img src="/static/img/Monguarte_color.jpg" class="rounded-circle d-inline-block "alt="Bootstrap" width="70"height="70">
+                        <img src="/static/img/Monguarte_color.jpg" class="rounded-circle d-inline-block "
+                             alt="Bootstrap" width="70" height="70">
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <!-- jQuery (Necesario para los componentes interactivos de Bootstrap) -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-<!-- JS de Bootstrap -->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- JS de Bootstrap -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 </header>

@@ -1,12 +1,12 @@
-from django.shortcuts import render, redirect, get_object_or_404
 from decimal import Decimal
-from productos.forms import ProductoForm
+
+from django.contrib import messages
+from django.shortcuts import render, redirect, get_object_or_404
+
 from productos.models import Producto
 from usuario.models import Comision
-from venta.models import Venta, Detalle_Venta
 from venta.forms import Detalle_VentaForm, Detalle_VentaUpdateForm, VentaForm, VentaUpdateForm
-from django.contrib import messages
-from django.contrib.auth.decorators import login_required
+from venta.models import Venta, Detalle_Venta
 
 
 # Create your views here.
@@ -219,20 +219,23 @@ def ver_contenido(request, pk):
     }
     return render(request, 'venta/venta_final.html', context)
 
+
 def aumentar_cantidad(request, pk):
     detalle_venta = get_object_or_404(Detalle_Venta, id=pk)
-    detalle_venta.cantidad_total  += 1
+    detalle_venta.cantidad_total += 1
     detalle_venta.save()
     return redirect('detalle_ventas', pk=detalle_venta.venta.pk)
 
+
 def disminuir_cantidad(request, pk):
     detalle_venta = get_object_or_404(Detalle_Venta, id=pk)
-    if detalle_venta.cantidad_total  > 0:
-        detalle_venta.cantidad_total  -= 1
+    if detalle_venta.cantidad_total > 0:
+        detalle_venta.cantidad_total -= 1
         detalle_venta.save()
-    if detalle_venta.cantidad_total  == 0:
+    if detalle_venta.cantidad_total == 0:
         detalle_venta.delete()  # Delete the product if quantity reaches 0
     return redirect('detalle_ventas', pk=detalle_venta.venta.pk)
+
 
 def eliminar_detalle_venta(request, pk):
     detalle_venta = get_object_or_404(Detalle_Venta, id=pk)

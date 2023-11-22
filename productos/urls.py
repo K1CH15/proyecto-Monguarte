@@ -1,6 +1,5 @@
 from django.urls import path
 
-
 from productos.views import producto_listar, producto_crear, producto_modificar, producto_eliminar, establecer_precio, \
     lista_de_productos
 
@@ -10,8 +9,8 @@ urlpatterns = [
     path('producto/crear/', producto_crear, name="productos-crear"),
     path('producto/modificar/<int:pk>/', producto_modificar, name="productos-modificar"),
     path('producto/eliminar/<int:pk>/', producto_eliminar, name="productos-eliminar"),
-    path('producto/establecer_precio/<int:producto_id>/',establecer_precio, name='establecer_precio'),
-    path('producto/listar/',lista_de_productos, name='lista_de_productos'),
+    path('producto/establecer_precio/<int:producto_id>/', establecer_precio, name='establecer_precio'),
+    path('producto/listar/', lista_de_productos, name='lista_de_productos'),
 
     # path('tamaño/', tamaño_listar, name="tamaños" ),
     # path('tamaño/crear/', tamaño_crear, name="tamaños-crear" ),

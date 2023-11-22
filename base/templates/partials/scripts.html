@@ -1,9 +1,10 @@
 {% load static %}
 
+
 <!-- jQuery -->
 <script src="{% static '/node_modules/jquery/dist/jquery.min.js' %}"></script>
 <script src="{% static '/node_modules/select2/dist/js/select2.min.js' %}"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+
 
 <!-- Bootstrap 4 -->
 <script src="{% static '/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
@@ -21,16 +22,14 @@
 <script src="{% static '/node_modules/datatables.net-buttons/js/buttons.print.min.js' %}"></script>
 <script src="{% static '/node_modules/datatables.net-buttons/js/buttons.colVis.min.js' %}"></script>
 <script type="text/javascript" src="{% static '/node_modules/accessibility/dist/main.bundle.js' %}"></script>
-<style href="{% static '/css/fonts.googleapis.com_css2_family=Dancing+Script_wght@600&display=swap.css' %}"></style>
+
 <script src="/static/js/sccrip.js"></script>
 
 <!-- libreria sweetalert -->
 <script src="{% static '/node_modules/sweetalert2/dist/sweetalert2.all.min.js' %}"></script>
 <!-- Toastr -->
 <script src="{% static '/node_modules/toastr/build/toastr.min.js' %}"></script>
-<style>
-    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap');
-</style>
+
 {% if messages %}
     {% for m in messages %}
         <script>
@@ -52,7 +51,7 @@
         </script>
     {% endfor %}
 {% endif %}
-
+<script id="aioa-adawidget" src="{{ AIOA_URL }}"></script>
 <script>
     $(".btnEliminar").click(function () {
         var ids = $(this).data("ids");
@@ -335,7 +334,11 @@
 
                     },
                     customize: function (doc) {
-                        doc.footer = {text: 'Contacto : 3115237481 correo electronico: gumball1618@gmail.com Dirección: cra 11 # 7 - 72', alignment: 'center', color: 'black'}
+                        doc.footer = {
+                            text: 'Contacto : 3115237481 correo electronico: gumball1618@gmail.com Dirección: cra 11 # 7 - 72',
+                            alignment: 'center',
+                            color: 'black'
+                        }
                         doc.background = {
                             absolutePosition: {x: 80, y: 250},
                             opacity: 0.1,

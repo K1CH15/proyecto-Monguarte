@@ -39,8 +39,9 @@ DJANGO_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',]
-LOCAL_APPS=[
+    'django.contrib.staticfiles',
+]
+LOCAL_APPS = [
     # Apps
     'usuario.apps.PersonaConfig',
     'inventario.apps.InventarioConfig',
@@ -49,7 +50,7 @@ LOCAL_APPS=[
     'venta.apps.VentaConfig',
     'accounts.apps.AccountsConfig',
     'utils.apps.UtilsConfig'
-    ]
+]
 
 THIRD_PARTY_APPS = [
     # Librerias
@@ -61,6 +62,9 @@ THIRD_PARTY_APPS = [
     'django_dump_load_utf8',
     'django_seed',
     'django_select2',
+    'accessibility',
+    'radiogrid',
+    'django_dump_die',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -76,6 +80,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_dump_die.middleware.DumpAndDieMiddleware'
 
 ]
 
@@ -92,6 +97,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'accessibility.context_processors.admin_AIOA',
             ],
         },
     },

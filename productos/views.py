@@ -1,9 +1,10 @@
 from django.contrib import messages
-from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect
+from django.shortcuts import render, get_object_or_404
+
 from productos.forms import ProductoForm, ProductoUpdateForm
 from productos.models import Producto
-from django.shortcuts import render, get_object_or_404
 from .forms import PrecioUnitarioForm
 
 
@@ -21,7 +22,7 @@ def producto_crear(request):
 
             return redirect('productosl')
         else:
-            messages.error(request,mensajeerror)
+            messages.error(request, mensajeerror)
     else:
         form = ProductoForm()
     context = {
@@ -29,6 +30,7 @@ def producto_crear(request):
         "form": form
     }
     return render(request, "productos/crear.html", context)
+
 
 @login_required
 def producto_listar(request):
@@ -41,6 +43,7 @@ def producto_listar(request):
         "productos": productosn
     }
     return render(request, "productos/listar.html", context)
+
 
 @login_required
 def producto_modificar(request, pk):
@@ -61,6 +64,7 @@ def producto_modificar(request, pk):
     }
     return render(request, "productos/modificar.html", context)
 
+
 @login_required
 def producto_eliminar(request, pk):
     mensaje = f'¡Hecho! El P se ha modificado exitosamente.'
@@ -72,9 +76,11 @@ def producto_eliminar(request, pk):
 
     return redirect('productosl')
 
+
 def lista_de_productos(request):
     productos = Producto.objects.all()
     return render(request, 'productos/listar.html', {'productos': productos})
+
 
 def establecer_precio(request, producto_id):
     producto = get_object_or_404(Producto, id=producto_id)

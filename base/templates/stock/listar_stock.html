@@ -1,4 +1,3 @@
-
 {% extends 'partials/body.html' %}
 
 {% block contenido %}
@@ -63,8 +62,8 @@
                                                                 {% if materia_prima.stock > 0 %} disabled {% endif %}>
                                                             Eliminar
                                                         </button>
-{#                                                        <a class="btn btn-primary btn-md bi bi-wrench m-1 me-1"#}
-{#                                                           href="{% url 'materias-primas-modificar' materia_prima.id %}">Modificar</a>#}
+                                                        {#                                                        <a class="btn btn-primary btn-md bi bi-wrench m-1 me-1"#}
+                                                        {#                                                           href="{% url 'materias-primas-modificar' materia_prima.id %}">Modificar</a>#}
                                                     </td>
                                                 </tr>
                                             {% endif %}

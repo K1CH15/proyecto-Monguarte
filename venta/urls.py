@@ -1,4 +1,5 @@
 from django.urls import path
+
 from venta.views import venta_crear, venta_listar, venta_modificar, venta_eliminar, detalle_venta_crear, \
     detalle_venta_listar, detalle_venta_modificar, detalle_ventas_finalizar
 from . import views

@@ -1,4 +1,5 @@
 from django.urls import path
+
 from inventario.views import fabricacion_listar, fabricacion_crear, fabricacion_modificar, fabricacion_eliminar, \
     fabricacion_detalle_listar, fabricacion_detalle_finalizar
 from inventario.views import materia_prima_crear, materia_prima_eliminar, materia_prima_listar, materia_prima_modificar

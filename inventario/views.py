@@ -1,13 +1,12 @@
 from decimal import Decimal
+
 from django.contrib import messages
-import json
-from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect, get_object_or_404
+
 from inventario.forms import FabricacionForm, FabricacionUptadeForm, Fabricacion, Fabricacion_DetalleForm
-from inventario.forms import Materia_PrimaForm, Materia_PrimaUptadeForm, Materia_Prima
+from inventario.forms import Materia_PrimaForm, Materia_PrimaUptadeForm
 from inventario.models import Materia_Prima, Fabricacion_Detalle
-from productos.forms import ProductoForm
-from productos.models import Producto
 
 
 # Create your views here.

@@ -177,6 +177,16 @@ argon2 = ["argon2-cffi (>=19.1.0)"]
 bcrypt = ["bcrypt"]
 
 [[package]]
+name = "django-all-in-one-accessibility"
+version = "2.0.1"
+description = "All in One Accessibility widget improves Django website ADA compliance and browser experience for ADA, WCAG 2.1, Section 508, Australian DDA, European EAA EN 301 549, UK Equality Act (EA), Israeli Standard 5568, California Unruh, Ontario AODA, Canada ACA, German BITV, and France RGAA Standards"
+optional = false
+python-versions = "*"
+files = [
+    {file = "django-all-in-one-accessibility-2.0.1.tar.gz", hash = "sha256:ce36e574f7740ef02b6ef5e11da25b755e2b86e3bf8c23a6c658b7a4c6b02021"},
+]
+
+[[package]]
 name = "django-appconf"
 version = "1.0.5"
 description = "A helper class for handling configuration defaults of packaged apps gracefully."
@@ -235,6 +245,24 @@ files = [
 django = ">=4.2"
 
 [[package]]
+name = "django-dump-die"
+version = "0.1.7"
+description = "A Django app to add Laravel/Symfony-like dump and die functionality."
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "django-dump-die-0.1.7.tar.gz", hash = "sha256:48468d6618346cbf5ff56de58b491695427eb8d0e9545db5a95465a0be74301a"},
+    {file = "django_dump_die-0.1.7-py3-none-any.whl", hash = "sha256:37f5c62d9b1d950ed8fdb17d420b78b90f54f8a4aabe93b973f5b7daa3e6892e"},
+]
+
+[package.dependencies]
+django = ">=3.2.0"
+
+[package.extras]
+dev = ["black", "coverage", "pylint", "pylint-django"]
+doc = ["doc8", "esbonio", "pip-tools", "rstcheck", "sphinx", "sphinx-autobuild", "sphinx-rtd-theme"]
+
+[[package]]
 name = "django-dump-load-utf8"
 version = "0.0.4"
 description = "Django command dumpdatautf8 and loaddatautf8"
@@ -244,6 +272,21 @@ files = [
     {file = "django-dump-load-utf8-0.0.4.tar.gz", hash = "sha256:963b8428803551007a53770aa60ceb9b02a59ec22c7a56b7aacda811772f2d17"},
     {file = "django_dump_load_utf8-0.0.4-py3-none-any.whl", hash = "sha256:9f2002ab5eba55b5c4230667b6a7144a5a6aad9da89ee6f5b8bd323b00548110"},
 ]
+
+[[package]]
+name = "django-radiogrid"
+version = "1.1.0"
+description = "Django radio grid field"
+optional = false
+python-versions = "*"
+files = [
+    {file = "django-radiogrid-1.1.0.tar.gz", hash = "sha256:136e5ed06a3e1eaf1de68196bf770b5d4adbffd15e38e8f075078eee0a2ef92c"},
+    {file = "django_radiogrid-1.1.0-py2.py3-none-any.whl", hash = "sha256:472cb2141151f369057ce2f1cd0e633b97be53be9970274e83c167aea1254105"},
+]
+
+[package.dependencies]
+django = ">=1.7.0"
+six = ">=1.16.0"
 
 [[package]]
 name = "django-safedelete"
@@ -450,4 +493,4 @@ zstd = ["zstandard (>=0.18.0)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "4c58feec5bf8c265fccd462d670dee5ef723eb3c2efca7f20369228596738108"
+content-hash = "fc0267379f1aa3effc9ccb9230a342249cf2808dce9bf09f52f6f99d49d29c76"
