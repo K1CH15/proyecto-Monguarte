@@ -20,7 +20,10 @@
     "migrate": "python manage.py migrate",
     "migrations": "npm run usuario & npm run producto & npm run inventario & npm run compra & npm run venta & npm run cuentas",
     "server": "python manage.py runserver",
-    "ver": "npm run migrations & npm run migrate  & npm run server",
+    "lib-web": "npm install & npm update",
+    "lib-python":"poetry install & poetry update",
+    "ver": "npm run lib-web & npm run lib-python & npm run migrations & npm run migrate  & npm run server ",
+
 
     "bkusuario" : "python manage.py dumpdatautf8 usuario --indent 4 --output usuario/seed/usuario.json",
     "bkproducto": "python manage.py dumpdatautf8 productos --indent 4 --output productos/seed/producto.json",
